@@ -365,6 +365,7 @@ Json::Value SGXWalletServer::ecdsaSignMessageHashImpl(int _base, const string &_
         shared_ptr <string> key_ptr = readFromDb(_keyName, "");
 
         sign_vect = ecdsaSignHash(key_ptr->c_str(), cutHash.c_str(), _base);
+
         if (sign_vect.size() != 3) {
             throw SGXException(INVALID_ECSDA_SIGNATURE, "Invalid ecdsa signature");
         }

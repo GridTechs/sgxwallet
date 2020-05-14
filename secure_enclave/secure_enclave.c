@@ -291,6 +291,9 @@ void trustedEcdsaSign(int *errStatus, char *errString, uint8_t *encryptedPrivate
 
     LOG_DEBUG (__FUNCTION__);
 
+    if (base != 16)
+        abort();
+
     char* arrM = NULL;
     char* arrR = NULL;
     char* arrS = NULL;

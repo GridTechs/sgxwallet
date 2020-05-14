@@ -150,11 +150,6 @@ vector<string> ecdsaSignHash(const char *encryptedKeyHex, const char *hashHex, i
     }
 
 
-    spdlog::debug("encryptedKeyHex: {}", encryptedKeyHex);
-    spdlog::debug("HASH: {}", hashHex);
-    spdlog::debug("encrypted len: {}", dec_len);
-
-
     if (!encryptKeys)
         status = trustedEcdsaSign(eid, &errStatus, errMsg, encr_key, ECDSA_ENCR_LEN, (unsigned char *) hashHex, signature_r,
                              signature_s, &signature_v, base);
