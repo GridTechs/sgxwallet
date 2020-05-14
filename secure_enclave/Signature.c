@@ -112,16 +112,13 @@ void signature_sign(signature sig, mpz_t message, mpz_t private_key, domain_para
 
     mpz_mod(k, seed, curve->p);
 
-    //mpz_set_str(k, "49a0d7b786ec9cde0d0721d72804befd06571c974b191efb42ecf322ba9ddd9a", 16);
-    //  mpz_set_str(k, "DC87789C4C1A09C97FF4DE72C0D0351F261F10A2B9009C80AEE70DDEC77201A0", 16);
-    //mpz_set_str(k,"29932781130098090011281004827843485745127563886526054275935615017309884975795",10);
-
     //Calculate x
     point_multiplication(Q, k, curve->G, curve);
     mpz_set(x, Q->x);
 
     //Calculate r
     mpz_mod(r, x, curve->n);
+
     if (!mpz_sgn(r))    //Start over if r=0, note haven't been tested memory might die :)
         goto signature_sign_start;
 

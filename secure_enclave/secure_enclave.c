@@ -374,12 +374,11 @@ void trustedEcdsaSign(int *errStatus, char *errString, uint8_t *encryptedPrivate
         goto clean;
     }
 
-    arrR = calloc(mpz_sizeinbase(sign->r, base) + 2,1);
-    mpz_get_str(arrR, base, sign->r);
-    strncpy(sigR, arrR, 1024);
-    arrS = calloc(mpz_sizeinbase(sign->s, base) + 2, 1);
-    mpz_get_str(arrS, base, sign->s);
-    strncpy(sigS, arrS, 1024);
+
+    arrR = mpz_get_str(NULL, base, sign->r);
+    strncpy(sigR, arrR);
+    arrS = mpz_get_str(NULL, base, sign->s);
+    strncpy(sigS, arrS, BUF_LEN);
     *sig_v = sign->v;
 
     clean:
